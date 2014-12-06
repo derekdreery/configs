@@ -155,3 +155,5 @@ bar {
 
 # Background image
 exec --no-startup-id feh --bg-fill ~/Pictures/summer_sunset.png
+# For pulseaudio
+exec --no-startup-id start-pulseaudio-x11
