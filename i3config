@@ -154,7 +154,7 @@ bar {
 }
 
 # Background image
-exec --no-startup-id feh --bg-fill ~/Pictures/summer_sunset.png
+exec --no-startup-id feh --bg-fill ~/Pictures/summer_sunset_dark.png
 # For systemd with jack
 exec qjackctl
 # For pulseaudio
