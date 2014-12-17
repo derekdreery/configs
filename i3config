@@ -159,3 +159,6 @@ exec --no-startup-id feh --bg-fill ~/Pictures/summer_sunset_dark.png
 exec qjackctl
 # For pulseaudio
 exec --no-startup-id start-pulseaudio-x11
+
+# JACK qjackctl should be floating
+for_window [title="JACK Audio Connection Kit"] floating enable
