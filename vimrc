@@ -11,6 +11,10 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'myusuf3/numbers.vim'
 Plugin 'pangloss/vim-javascript'
+<<<<<<< HEAD
+=======
+Plugin 'cespare/vim-toml'
+>>>>>>> bbe68a579b9bdeea2d6ae80d95777941faafbb5e
 Plugin 'wting/rust.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required

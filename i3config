@@ -27,7 +27,7 @@ font pango: Source Code Pro 10px
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -153,4 +153,11 @@ bar {
         status_command py3status
 }
 
+<<<<<<< HEAD
 exec --no-startup-id dunst
+=======
+# Background image
+exec --no-startup-id feh --bg-fill ~/Pictures/summer_sunset.png
+# For pulseaudio
+exec --no-startup-id start-pulseaudio-x11
+>>>>>>> bbe68a579b9bdeea2d6ae80d95777941faafbb5e
