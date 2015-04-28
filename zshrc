@@ -10,3 +10,9 @@ antigen theme candy
 
 autoload -U compinit
 compinit
+
+typeset -U path
+path=(~/bin $path)
+
+setopt completealiases
+setopt HIST_IGNORE_DUPS

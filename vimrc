@@ -37,6 +37,8 @@ set incsearch
 
 set history=1000
 set undolevels=1000
+set undofile
+set undodir=$HOME/.vimundo
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set title
 set visualbell
