@@ -11,11 +11,10 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'myusuf3/numbers.vim'
 Plugin 'pangloss/vim-javascript'
-<<<<<<< HEAD
-=======
 Plugin 'cespare/vim-toml'
->>>>>>> bbe68a579b9bdeea2d6ae80d95777941faafbb5e
 Plugin 'wting/rust.vim'
+Plugin 'burnettk/vim-angular'
+Plugin 'digitaltoad/vim-jade'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -50,7 +49,7 @@ filetype plugin indent on
 autocmd filetype python set expandtab
 
 if &t_Co >= 256 || has("gui_running")
-    colorscheme mustang
+    "colorscheme mustang
 endif
 
 if &t_Co > 2 || has("gui_running")
@@ -90,3 +89,13 @@ map <Leader>k <Plug>(easymotion-k)
 map <Leader>w <Plug>(easymotion-w)
 map <Leader>y <Plug>(easymotion-y)
 map <Leader>d <Plug>(easymotion-d)
+
+" Remove trailing whitespace
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd FileType c,cpp,java,php,ruby,python,javascript autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()

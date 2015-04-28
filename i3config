@@ -153,11 +153,12 @@ bar {
         status_command py3status
 }
 
-<<<<<<< HEAD
 exec --no-startup-id dunst
-=======
 # Background image
 exec --no-startup-id feh --bg-fill ~/Pictures/summer_sunset.png
 # For pulseaudio
 exec --no-startup-id start-pulseaudio-x11
->>>>>>> bbe68a579b9bdeea2d6ae80d95777941faafbb5e
+
+# Work programs
+exec --no-startup-id i3-msg 'workspace "4: Comms"; exec sflphone'
+#exec --no-startup-id javaws ~/bin/gota.jnlp
