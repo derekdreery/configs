@@ -8,5 +8,14 @@ antigen bundle archlinux
 antigen bundle command-not-found
 
 antigen theme candy
- 
+
 antigen apply
+
+autoload -U compinit
+compinit
+
+typeset -U path
+path=(~/bin $path)
+
+setopt completealiases
+setopt HIST_IGNORE_DUPS

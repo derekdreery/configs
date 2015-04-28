@@ -13,6 +13,8 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'pangloss/vim-javascript'
 Plugin 'cespare/vim-toml'
 Plugin 'wting/rust.vim'
+Plugin 'burnettk/vim-angular'
+Plugin 'digitaltoad/vim-jade'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -35,6 +37,8 @@ set incsearch
 
 set history=1000
 set undolevels=1000
+set undofile
+set undodir=$HOME/.vimundo
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set title
 set visualbell
@@ -87,3 +91,13 @@ map <Leader>k <Plug>(easymotion-k)
 map <Leader>w <Plug>(easymotion-w)
 map <Leader>y <Plug>(easymotion-y)
 map <Leader>d <Plug>(easymotion-d)
+
+" Remove trailing whitespace
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd FileType c,cpp,java,php,ruby,python,javascript autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
