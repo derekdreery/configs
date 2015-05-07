@@ -6,7 +6,6 @@ filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 Plugin 'gmarik/Vundle.vim'
 Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'myusuf3/numbers.vim'
@@ -15,6 +14,14 @@ Plugin 'cespare/vim-toml'
 Plugin 'wting/rust.vim'
 Plugin 'burnettk/vim-angular'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'mxw/vim-jsx'
+
+" snake_case (crs)
+" MixedCase (crm)
+" camelCase (crc),
+" snake_case (crs),
+" UPPER_CASE (cru)
+Plugin 'tpope/vim-abolish'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -46,6 +53,9 @@ set noerrorbells
 
 set nobackup
 set noswapfile
+
+" Use , for leader
+let mapleader = ","
 
 filetype plugin indent on
 autocmd filetype python set expandtab
@@ -92,6 +102,9 @@ map <Leader>w <Plug>(easymotion-w)
 map <Leader>y <Plug>(easymotion-y)
 map <Leader>d <Plug>(easymotion-d)
 
+map <Leader>p :set paste
+
+
 " Remove trailing whitespace
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -100,4 +113,10 @@ fun! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 
-autocmd FileType c,cpp,java,php,ruby,python,javascript autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType c,cpp,java,php,ruby,python,javascript autocmd
+    \ BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+set formatoptions+=t
+set textwidth=79
+set colorcolumn=+1
+hi ColorColumn ctermbg=236 guibg=darkgrey

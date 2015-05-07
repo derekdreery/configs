@@ -161,4 +161,3 @@ exec --no-startup-id start-pulseaudio-x11
 
 # Work programs
 exec --no-startup-id i3-msg 'workspace "4: Comms"; exec sflphone'
-#exec --no-startup-id javaws ~/bin/gota.jnlp
