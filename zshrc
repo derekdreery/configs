@@ -1,12 +1,25 @@
-source /usr/share/zsh/scripts/antigen/antigen.zsh
+ANTIGEN_PATHS=(/usr/share/zsh/scripts/antigen/antigen.zsh /usr/share/zsh-antigen/antigen.zsh)
+for PATH_TEST in $ANTIGEN_PATHS
+do
+    if [ -f "$PATH_TEST" ]
+    then
+        ANTIGEN_PATH=$PATH_TEST
+        break
+    fi
+done
 
-antigen use oh-my-zsh
+if [ ! -z "$ANTIGEN_PATH" ]
+then
+    source $ANTIGEN_PATH
 
-antigen bundle git
-antigen bundle archlinux
-antigen bundle command-not-found
+    antigen use oh-my-zsh
 
-antigen theme candy
+    antigen bundle git
+    antigen bundle archlinux
+    antigen bundle command-not-found
+
+    antigen theme candy
+fi
 
 autoload -U compinit
 compinit
@@ -22,3 +35,5 @@ if (( $+commands[thefuck] )) then
     alias f='fuck'
     alias FUCK='fuck'
 fi
+
+[[ -f '/etc/profile.d/vte.sh' ]] && source /etc/profile.d/vte.sh

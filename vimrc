@@ -73,6 +73,7 @@ set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 autocmd filetype html,xml set listchars-=tab:>.
+nnoremap <Leader>m :set list!<CR>:set list?<CR>
 
 set pastetoggle=<F2>
 
