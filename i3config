@@ -166,4 +166,3 @@ exec --no-startup-id pulseaudio
 # Notifications
 exec dunst
 
-# Work programs
