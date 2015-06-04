@@ -7,6 +7,7 @@ antigen bundle pip
 antigen bundle archlinux
 antigen bundle vagrant
 antigen bundle wd
+antigen bundle ruby
 antigen bundle command-not-found
 antigen bundle rust-lang/zsh-config
 

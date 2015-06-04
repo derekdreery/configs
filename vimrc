@@ -15,6 +15,7 @@ Plugin 'cespare/vim-toml'
 Plugin 'wting/rust.vim'
 Plugin 'burnettk/vim-angular'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'wookiehangover/jshint.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
