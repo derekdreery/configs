@@ -104,7 +104,7 @@ map <Leader>w <Plug>(easymotion-w)
 map <Leader>y <Plug>(easymotion-y)
 map <Leader>d <Plug>(easymotion-d)
 
-map <Leader>p :set paste
+map <Leader>p :set paste!<CR>:set paste?<CR>
 
 
 " Remove trailing whitespace
