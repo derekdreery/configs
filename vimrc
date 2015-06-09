@@ -15,6 +15,7 @@ Plugin 'wting/rust.vim'
 Plugin 'burnettk/vim-angular'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'mxw/vim-jsx'
+Plugin 'evidens/vim-twig'
 
 " snake_case (crs)
 " MixedCase (crm)
