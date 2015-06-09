@@ -62,7 +62,7 @@ filetype plugin indent on
 autocmd filetype python set expandtab
 
 if &t_Co >= 256 || has("gui_running")
-    "colorscheme mustang
+    colorscheme delek
 endif
 
 if &t_Co > 2 || has("gui_running")

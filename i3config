@@ -153,11 +153,18 @@ bar {
         status_command py3status
 }
 
+# JACK qjackctl should be floating
+for_window [title="JACK Audio Connection Kit"] floating enable
+
 exec --no-startup-id dunst
 # Background image
-exec --no-startup-id feh --bg-fill ~/Pictures/summer_sunset.png
+exec --no-startup-id feh --bg-fill ~/Pictures/summer_sunset_dark.png
+# For systemd with jack
+#exec qjackctl
 # For pulseaudio
 exec --no-startup-id start-pulseaudio-x11
+# Notifications
+exec dunst
 
 # Work programs
 #exec --no-startup-id i3-msg 'workspace "4: Comms"; exec sflphone'

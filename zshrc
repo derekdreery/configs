@@ -13,13 +13,20 @@ then
     source $ANTIGEN_PATH
 
     antigen use oh-my-zsh
-
     antigen bundle git
+    antigen bundle pip
     antigen bundle archlinux
+    antigen bundle vagrant
+    antigen bundle wd
     antigen bundle command-not-found
+    antigen bundle rust-lang/zsh-config
 
     antigen theme candy
 fi
+
+antigen apply
+
+[[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 autoload -U compinit
 compinit

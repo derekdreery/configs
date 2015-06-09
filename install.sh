@@ -37,6 +37,9 @@ mkdir -p $HOME/Pictures
 if [ ! -e "$HOME/Pictures/summer_sunset.png" ]; then 
     cp $PWD/summer_sunset.png $HOME/Pictures/
 fi
+if [ ! -e "$HOME/Pictures/summer_sunset_dark.png" ]; then 
+    cp $PWD/summer_sunset_dark.png $HOME/Pictures/
+fi
 # vim
 if [ ! -e "$HOME/.vimrc" ]; then
     ln -s $PWD/vimrc $HOME.vimrc
