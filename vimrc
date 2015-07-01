@@ -16,10 +16,9 @@ Plugin 'burnettk/vim-angular'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'wookiehangover/jshint.vim'
 Plugin 'mxw/vim-jsx'
-" snake_case (crs)
-" MixedCase (crm)
-" camelCase (crc),
 " snake_case (crs),
+" MixedCase (crm),
+" camelCase (crc),
 " UPPER_CASE (cru)
 Plugin 'tpope/vim-abolish'
 call vundle#end()            " required
