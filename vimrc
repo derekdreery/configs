@@ -14,9 +14,10 @@ Plugin 'cespare/vim-toml'
 Plugin 'wting/rust.vim'
 Plugin 'burnettk/vim-angular'
 Plugin 'digitaltoad/vim-jade'
-Plugin 'wookiehangover/jshint.vim'
+Plugin 'scrooloose/syntastic'
 Plugin 'mxw/vim-jsx'
 Plugin 'evidens/vim-twig'
+Plugin 'wavded/vim-stylus'
 " snake_case (crs),
 " MixedCase (crm),
 " camelCase (crc),
@@ -125,3 +126,15 @@ set formatoptions+=t
 set textwidth=79
 set colorcolumn=+1
 hi ColorColumn ctermbg=236 guibg=darkgrey
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers = ['jsxhint']
