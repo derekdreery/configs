@@ -12,6 +12,7 @@ if [ ! -z "$ANTIGEN_PATH" ]
 then
     source $ANTIGEN_PATH
 
+    antigen use oh-my-zsh
     antigen bundle pip
     antigen bundle vagrant
     antigen bundle wd
@@ -21,7 +22,6 @@ then
     antigen bundle archlinux
     antigen bundle command-not-found
 
-    antigen use oh-my-zsh
     antigen theme candy
     antigen apply
 fi
