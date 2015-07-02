@@ -18,13 +18,6 @@ Plugin 'scrooloose/syntastic'
 Plugin 'mxw/vim-jsx'
 Plugin 'evidens/vim-twig'
 Plugin 'wavded/vim-stylus'
-<<<<<<< HEAD
-
-" snake_case (crs)
-" MixedCase (crm)
-" camelCase (crc),
-=======
->>>>>>> home
 " snake_case (crs),
 " MixedCase (crm),
 " camelCase (crc),
