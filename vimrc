@@ -16,6 +16,7 @@ Plugin 'burnettk/vim-angular'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'mxw/vim-jsx'
 Plugin 'evidens/vim-twig'
+Plugin 'wavded/vim-stylus'
 
 " snake_case (crs)
 " MixedCase (crm)
@@ -62,7 +63,7 @@ filetype plugin indent on
 autocmd filetype python set expandtab
 
 if &t_Co >= 256 || has("gui_running")
-    colorscheme delek
+    colorscheme pablo
 endif
 
 if &t_Co > 2 || has("gui_running")
