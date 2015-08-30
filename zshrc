@@ -13,18 +13,19 @@ then
     source $ANTIGEN_PATH
 
     antigen use oh-my-zsh
-    antigen bundle git
     antigen bundle pip
-    antigen bundle archlinux
     antigen bundle vagrant
     antigen bundle wd
-    antigen bundle command-not-found
+    antigen bundle ruby
     antigen bundle rust-lang/zsh-config
+    antigen bundle git
+    antigen bundle archlinux
+    antigen bundle command-not-found
 
     antigen theme candy
+    antigen apply
 fi
 
-antigen apply
 
 [[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 

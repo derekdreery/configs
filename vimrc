@@ -14,13 +14,13 @@ Plugin 'cespare/vim-toml'
 Plugin 'wting/rust.vim'
 Plugin 'burnettk/vim-angular'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'scrooloose/syntastic'
 Plugin 'mxw/vim-jsx'
 Plugin 'evidens/vim-twig'
-
-" snake_case (crs)
-" MixedCase (crm)
-" camelCase (crc),
+Plugin 'wavded/vim-stylus'
 " snake_case (crs),
+" MixedCase (crm),
+" camelCase (crc),
 " UPPER_CASE (cru)
 Plugin 'tpope/vim-abolish'
 call vundle#end()            " required
@@ -68,6 +68,10 @@ endif
 if &t_Co > 2 || has("gui_running")
     " switch syntax highlighting on, when the terminal has colors
     syntax on
+endif
+
+if &diff
+    colorscheme evening
 endif
 
 set list
@@ -127,3 +131,15 @@ hi ColorColumn ctermbg=236 guibg=darkgrey
 filetype off
 set runtimepath+=/usr/share/lilypond/2.18.2/vim/
 filetype on
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers = ['jsxhint --esnext']
