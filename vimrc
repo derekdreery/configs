@@ -23,11 +23,21 @@ Plugin 'wavded/vim-stylus'
 " camelCase (crc),
 " UPPER_CASE (cru)
 Plugin 'tpope/vim-abolish'
+" Rust autocomplete
+Plugin 'phildawes/racer'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'Glench/Vim-Jinja2-Syntax'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+let g:jsx_ext_required = 0
+
+" Racer setup
+let g:racer_cmd = "/home/rdodd/packages/racer/target/release/racer"
+let $RUST_SRC_PATH = "/home/rdodd/packages/rust/src"
+
 set hidden
-set background=dark
 "set nowrap
 set tabstop=4
 set expandtab
@@ -57,13 +67,11 @@ set noswapfile
 
 " Use , for leader
 let mapleader = ","
+" Needed before s is mapped
+nnoremap <Leader>s :SyntasticToggleMode<CR>
 
 filetype plugin indent on
 autocmd filetype python set expandtab
-
-if &t_Co >= 256 || has("gui_running")
-    colorscheme pablo
-endif
 
 if &t_Co > 2 || has("gui_running")
     " switch syntax highlighting on, when the terminal has colors
@@ -71,7 +79,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 if &diff
-    colorscheme evening
+    "colorscheme evening
 endif
 
 set list
@@ -79,8 +87,6 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 autocmd filetype html,xml set listchars-=tab:>.
 nnoremap <Leader>m :set list!<CR>:set list?<CR>
-
-set pastetoggle=<F2>
 
 set mouse=a
 
@@ -102,13 +108,14 @@ let g:EasyMotion_do_mapping = 0 "disable defaults
 let g:EasyMotion_smartcase = 1 "capitals=sensitive
 
 " easymotion mappings
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>w <Plug>(easymotion-w)
-map <Leader>y <Plug>(easymotion-y)
+nnoremap <Leader>j <Plug>(easymotion-j)
+nnoremap <Leader>k <Plug>(easymotion-k)
+nnoremap <Leader>w <Plug>(easymotion-w)
+nnoremap <Leader>y <Plug>(easymotion-y)
 map <Leader>d <Plug>(easymotion-d)
 
 map <Leader>p :set paste!<CR>:set paste?<CR>
+map <Leader>n :set number!<CR>:set number?<CR>
 
 
 " Remove trailing whitespace
@@ -125,7 +132,6 @@ autocmd FileType c,cpp,java,php,ruby,python,javascript autocmd
 set formatoptions+=t
 set textwidth=79
 set colorcolumn=+1
-hi ColorColumn ctermbg=236 guibg=darkgrey
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -134,7 +140,16 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-let g:syntastic_javascript_checkers = ['jsxhint']
+let g:syntastic_javascript_checkers = ['eslint']
+" TODO find better way of doing this
+
+set background=dark
+if &t_Co >= 256 || has("gui_running")
+    let g:solarized_termcolors=256
+    "colorscheme solarized
+endif
+nnoremap <Leader>l :ls<CR>:b
+hi ColorColumn ctermbg=236 guibg=darkgrey

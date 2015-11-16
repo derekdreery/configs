@@ -45,3 +45,9 @@ if (( $+commands[thefuck] )) then
 fi
 
 [[ -f '/etc/profile.d/vte.sh' ]] && source /etc/profile.d/vte.sh
+if [[ -d $HOME/.composer/vendor/bin ]]; then
+    path=($HOME/.composer/vendor/bin $path)
+fi
+
+export NVM_DIR="/home/rdodd/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
