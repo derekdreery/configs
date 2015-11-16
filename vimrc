@@ -133,6 +133,11 @@ set formatoptions+=t
 set textwidth=79
 set colorcolumn=+1
 
+" Load lilypond
+filetype off
+set runtimepath+=/usr/share/lilypond/2.18.2/vim/
+filetype on
+
 " Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
