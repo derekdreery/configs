@@ -18,6 +18,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'mxw/vim-jsx'
 Plugin 'evidens/vim-twig'
 Plugin 'wavded/vim-stylus'
+Plugin 'vim-scripts/iptables'
 " snake_case (crs),
 " MixedCase (crm),
 " camelCase (crc),
@@ -80,6 +81,8 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 autocmd filetype html,xml set listchars-=tab:>.
 nnoremap <Leader>m :set list!<CR>:set list?<CR>
 
+nnoremap <Leader>n :set number!<CR>:set number?<CR>
+
 set pastetoggle=<F2>
 
 set mouse=a
@@ -119,7 +122,7 @@ fun! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 
-autocmd FileType c,cpp,java,php,ruby,python,javascript autocmd
+autocmd FileType c,cpp,java,php,ruby,python,javascript,rust autocmd
     \ BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 set formatoptions+=t
@@ -143,3 +146,5 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_javascript_checkers = ['eshint']
+
+let g:jsx_ext_required = 0 " allow jsx in normal files
