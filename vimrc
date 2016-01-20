@@ -18,6 +18,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'mxw/vim-jsx'
 Plugin 'evidens/vim-twig'
 Plugin 'wavded/vim-stylus'
+Plugin 'vim-scripts/iptables'
 " snake_case (crs),
 " MixedCase (crm),
 " camelCase (crc),
@@ -88,6 +89,10 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 autocmd filetype html,xml set listchars-=tab:>.
 nnoremap <Leader>m :set list!<CR>:set list?<CR>
 
+nnoremap <Leader>n :set number!<CR>:set number?<CR>
+
+set pastetoggle=<F2>
+
 set mouse=a
 
 nnoremap j gj
@@ -126,7 +131,7 @@ fun! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 
-autocmd FileType c,cpp,java,php,ruby,python,javascript,stylus autocmd
+autocmd FileType c,cpp,java,php,ruby,python,javascript,rust,stylus autocmd
     \ BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 set formatoptions+=t
