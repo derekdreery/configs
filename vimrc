@@ -126,7 +126,7 @@ fun! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 
-autocmd FileType c,cpp,java,php,ruby,python,javascript autocmd
+autocmd FileType c,cpp,java,php,ruby,python,javascript,stylus autocmd
     \ BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 set formatoptions+=t
@@ -158,3 +158,4 @@ if &t_Co >= 256 || has("gui_running")
 endif
 nnoremap <Leader>l :ls<CR>:b
 hi ColorColumn ctermbg=236 guibg=darkgrey
+
