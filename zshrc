@@ -51,3 +51,6 @@ fi
 
 export NVM_DIR="/home/rdodd/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# cuz i'm an idiot
+alias tabe="vim"

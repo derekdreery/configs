@@ -19,6 +19,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'evidens/vim-twig'
 Plugin 'wavded/vim-stylus'
 Plugin 'vim-scripts/iptables'
+Plugin 'sheerun/vim-polyglot'
 " snake_case (crs),
 " MixedCase (crm),
 " camelCase (crc),
@@ -71,7 +72,6 @@ let mapleader = ","
 " Needed before s is mapped
 nnoremap <Leader>s :SyntasticToggleMode<CR>
 
-filetype plugin indent on
 autocmd filetype python set expandtab
 
 if &t_Co > 2 || has("gui_running")
@@ -88,8 +88,6 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 autocmd filetype html,xml set listchars-=tab:>.
 nnoremap <Leader>m :set list!<CR>:set list?<CR>
-
-nnoremap <Leader>n :set number!<CR>:set number?<CR>
 
 set pastetoggle=<F2>
 
