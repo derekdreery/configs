@@ -66,11 +66,12 @@ set noerrorbells
 set nobackup
 set noswapfile
 
+set clipboard=unnamedplus
+
 " Use , for leader
 let mapleader = ","
 " Needed before s is mapped
 nnoremap <Leader>s :SyntasticToggleMode<CR>
-
 filetype plugin indent on
 autocmd filetype python set expandtab
 
@@ -131,8 +132,8 @@ fun! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 
-autocmd FileType c,cpp,java,php,ruby,python,javascript,rust,stylus autocmd
-    \ BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType c,cpp,java,php,ruby,python,javascript,rust,stylus,sql,mysql
+    \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 set formatoptions+=t
 set textwidth=79

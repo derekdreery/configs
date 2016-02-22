@@ -21,6 +21,7 @@ then
     antigen bundle git
     antigen bundle archlinux
     antigen bundle command-not-found
+    antigen bundle derekdreery/zsh-ag
 
     antigen theme candy
     antigen apply
@@ -51,4 +52,5 @@ fi
 
 export NVM_DIR="/home/rdodd/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
 
