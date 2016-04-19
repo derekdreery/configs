@@ -1,14 +1,27 @@
 #!/bin/bash
 
 PWD=$(pwd)
+GRAPHICS=1
 
 error() {
     echo >&2 " -- ERROR: $1, aborting"
     exit 1
 }
 
+error() {
+    echo >&2 " -- WARN: $1, continuing"
+}
+
 check_for() {
     hash $1 >/dev/null 2>&1 || error "$1 not found"
+    echo "-- $1 found"
+}
+
+check_for_graphics() {
+    if hash $1 >/dev/null 2>&1; then
+        warn "$1 not found, not installing graphics"
+        GRAPHICS=0
+    fi
     echo "-- $1 found"
 }
 
@@ -17,6 +30,7 @@ echo "Installing configuration scripts"
 echo "--------------------------------"
 echo ""
 echo "Checking pre-requisites"
+check_for "xrdb"
 check_for "i3"
 check_for "vim"
 check_for "feh"
@@ -41,6 +55,10 @@ if [ ! -e "$HOME/Pictures/summer_sunset_dark.png" ]; then
     cp $PWD/summer_sunset_dark.png $HOME/Pictures/
 fi
 # vim
+mkdir -p ~/.config/Xresources
+wget "https://raw.githubusercontent.com/altercation/solarized/master/xresources/solarized" \
+    -O ~/.config/Xresources/solarized
+echo "[[ -f ~/.config/Xresources/solarized ]] && xrdb -merge -I\$HOME ~/.config/Xresources/solarized" >> $HOME/.xinitrc
 if [ ! -e "$HOME/.vimrc" ]; then
     ln -s $PWD/vimrc $HOME.vimrc
 fi
@@ -57,3 +75,5 @@ if [ -e "/etc/lightdm/lightdm.conf" ]; then
     sudo rm /etc/lightdm/lightdm.conf
 fi
 sudo ln -s $PWD/lightdm.conf /etc/lightdm/lightdm.conf
+# git
+sh ./git_setup.sh

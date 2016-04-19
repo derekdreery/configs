@@ -1,0 +1,6 @@
+git config --global user.name "Richard Dodd"
+git config --global user.email "richard.dodd@itp-group.co.uk"
+git config --global push.default "simple"
+git config --global merge.tool "vimdiff"
+git config --global core.editor "vim"
+git config --global alias.lg "log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"

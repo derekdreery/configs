@@ -21,6 +21,7 @@ then
     antigen bundle git
     antigen bundle archlinux
     antigen bundle command-not-found
+    antigen bundle derekdreery/zsh-ag
 
     antigen theme candy
     antigen apply
@@ -45,3 +46,12 @@ if (( $+commands[thefuck] )) then
 fi
 
 [[ -f '/etc/profile.d/vte.sh' ]] && source /etc/profile.d/vte.sh
+if [[ -d $HOME/.composer/vendor/bin ]]; then
+    path=($HOME/.composer/vendor/bin $path)
+fi
+
+export NVM_DIR="/home/rdodd/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# cuz i'm an idiot
+alias tabe="vim"
