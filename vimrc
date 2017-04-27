@@ -11,7 +11,7 @@ Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'myusuf3/numbers.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'cespare/vim-toml'
-Plugin 'wting/rust.vim'
+Plugin 'rust-lang/rust.vim'
 Plugin 'burnettk/vim-angular'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'scrooloose/syntastic'
@@ -19,6 +19,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'evidens/vim-twig'
 Plugin 'wavded/vim-stylus'
 Plugin 'vim-scripts/iptables'
+Plugin 'lambdatoast/elm.vim'
 Plugin 'sheerun/vim-polyglot'
 " snake_case (crs),
 " MixedCase (crm),
@@ -26,10 +27,14 @@ Plugin 'sheerun/vim-polyglot'
 " UPPER_CASE (cru)
 Plugin 'tpope/vim-abolish'
 " Rust autocomplete
-Plugin 'phildawes/racer'
+Plugin 'racer-rust/vim-racer'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'jparise/vim-graphql'
+Plugin 'vim-scripts/cool.vim'
+Plugin 'justinmk/vim-syntax-extra'
+Plugin 'niklasl/vim-rdf'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -74,6 +79,7 @@ let mapleader = ","
 " Needed before s is mapped
 nnoremap <Leader>s :SyntasticToggleMode<CR>
 autocmd filetype python set expandtab
+"autocmd filetype elm set expandtab tabstop=2 shiftwidth=2
 
 if &t_Co > 2 || has("gui_running")
     " switch syntax highlighting on, when the terminal has colors
@@ -130,7 +136,7 @@ fun! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 
-autocmd FileType c,cpp,java,php,ruby,python,javascript,rust,stylus,sql,mysql
+autocmd FileType c,cpp,java,php,ruby,python,javascript,rust,stylus,sql,mysql,elm
     \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 set formatoptions+=t
@@ -155,11 +161,62 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 " TODO find better way of doing this
 
+let g:racer_cmd = "/home/rdodd/.cargo/bin/racer"
+
 set background=dark
 if &t_Co >= 256 || has("gui_running")
     let g:solarized_termcolors=256
     "colorscheme solarized
 endif
 nnoremap <Leader>l :ls<CR>:b
-hi ColorColumn ctermbg=236 guibg=darkgrey
 
+" Hex mode
+" ex command for toggling hex mode - define mapping if desired
+command -bar Hexmode call ToggleHex()
+
+" helper function to toggle hex mode
+function ToggleHex()
+  " hex mode should be considered a read-only operation
+  " save values for modified and read-only for restoration later,
+  " and clear the read-only flag for now
+  let l:modified=&mod
+  let l:oldreadonly=&readonly
+  let &readonly=0
+  let l:oldmodifiable=&modifiable
+  let &modifiable=1
+  if !exists("b:editHex") || !b:editHex
+    " save old options
+    let b:oldft=&ft
+    let b:oldbin=&bin
+    " set new options
+    setlocal binary " make sure it overrides any textwidth, etc.
+    silent :e " this will reload the file without trickeries 
+              "(DOS line endings will be shown entirely )
+    let &ft="xxd"
+    " set status
+    let b:editHex=1
+    " switch to hex editor
+    %!xxd
+  else
+    " restore old options
+    let &ft=b:oldft
+    if !b:oldbin
+      setlocal nobinary
+    endif
+    " set status
+    let b:editHex=0
+    " return to normal editing
+    %!xxd -r
+  endif
+  " restore values for modified and read only state
+  let &mod=l:modified
+  let &readonly=l:oldreadonly
+  let &modifiable=l:oldmodifiable
+endfunction
+
+nnoremap <C-H> :Hexmode<CR>
+inoremap <C-H> <Esc>:Hexmode<CR>
+vnoremap <C-H> :<C-U>Hexmode<CR>
+
+colorscheme pablo
+hi ColorColumn ctermbg=236 guibg=darkgrey
