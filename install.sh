@@ -39,6 +39,9 @@ check_for "lightdm"
 check_for "lightdm-gtk-greeter"
 
 echo ""
+echo "Creating directories"
+mkdir -p $HOME/packages
+
 echo "Installing configuration files"
 set -x
 # i3
@@ -77,3 +80,9 @@ fi
 sudo ln -s $PWD/lightdm.conf /etc/lightdm/lightdm.conf
 # git
 sh ./git_setup.sh
+# xcwd
+git clone https://github.com/schischi/xcwd $HOME/packages/xcwd
+pushd $HOME/packages/xcwd
+make
+sudo cp ./xcwd /usr/local/bin/xcwd
+popd

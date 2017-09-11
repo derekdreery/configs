@@ -1,57 +1,88 @@
-ANTIGEN_PATHS=(/usr/share/zsh/scripts/antigen/antigen.zsh /usr/share/zsh-antigen/antigen.zsh)
-for PATH_TEST in $ANTIGEN_PATHS
-do
-    if [ -f "$PATH_TEST" ]
-    then
-        ANTIGEN_PATH=$PATH_TEST
-        break
-    fi
-done
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
 
-if [ ! -z "$ANTIGEN_PATH" ]
-then
-    source $ANTIGEN_PATH
+# Allow extended glob patterns (like '**/' is actually '(*/)#')
+setopt extended_glob
 
-    antigen use oh-my-zsh
-    antigen bundle pip
-    antigen bundle vagrant
-    antigen bundle wd
-    antigen bundle ruby
-    antigen bundle rust-lang/zsh-config
-    antigen bundle git
-    antigen bundle archlinux
-    antigen bundle command-not-found
-    antigen bundle derekdreery/zsh-ag
+# Allow comments to be put in the command-line
+#
+#   $ echo 'Hello World'    # This comment will be valid now
+#
+# http://stackoverflow.com/questions/11670935/comments-in-command-line-zsh
+setopt interactivecomments
 
-    antigen theme candy
-    antigen apply
-fi
+# Check history commands before executing
+setopt hist_verify
 
+# Track history between shells properly
+setopt inc_append_history
 
-[[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+# Don't add duplicate history
+setopt hist_ignore_dups
 
-autoload -U compinit
-compinit
+# Ignore whitespace a bit
+setopt hist_reduce_blanks
 
-typeset -U path
-path=(~/bin $path)
+# Don't need functions in history
+setopt hist_no_functions
 
-setopt completealiases
-setopt HIST_IGNORE_DUPS
+# Add to completions
+fpath=(~/.zsh/plugins/completions/src ~/.zsh/zfunc $fpath)
 
-if (( $+commands[thefuck] )) then
-    alias fuck='eval $(thefuck $(fc -ln -1))'
-    alias f='fuck'
-    alias FUCK='fuck'
-fi
+# Custom de-duping adder to path
+autoload addpath
+addpath ~/.cabal/bin # haskell
+addpath ~/.bin
+addpath ~/.cargo/bin # rust
+addpath ~/.gem/ruby/2.4.0/bin # ruby (e.g. sass)
 
-[[ -f '/etc/profile.d/vte.sh' ]] && source /etc/profile.d/vte.sh
-if [[ -d $HOME/.composer/vendor/bin ]]; then
-    path=($HOME/.composer/vendor/bin $path)
-fi
+# Vi mode ftw
+bindkey -v
 
-export NVM_DIR="/home/rdodd/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# Initialize colors
+# Necessary for
+#     $ echo "$fg[blue] hello world"
+# Like is uesd in zsh-colors
+autoload -U colors
+colors
 
-# cuz i'm an idiot
-alias tabe="vim"
+# Aliases
+source ~/.zsh/zsh_aliases
+# Environment vars
+source ~/.zsh/zsh_env
+
+# Initialize antigen-hs
+source ~/.zsh/antigen-hs/init.zsh
+
+# Python autocompletion (http://stackoverflow.com/a/246779/621449)
+export PYTHONSTARTUP=~/.pythonrc
+
+zle-keymap-select () {
+    case $KEYMAP in
+        vicmd) print -n -- "\033[0 q";; # block cursor
+        viins|main) print -n -- "\033[3 q";; # less visible cursor
+    esac
+}
+zle -N zle-keymap-select
+
+# Prompt
+PS1='%F{red}%n%f@%F{blue}%m%f %# '
+RPS1='%F{green}%~ %f[%F{yellow}%?%f]'
+PS2='%F{yellow}%_%f > '
+
+# Racer
+export RUST_SRC_PATH=~/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/
+
+# Set cursor style
+#print -rn '4 q'
+
+# Php
+export PATH=$PATH:$(composer global config bin-dir --absolute 2>/dev/null)
+
+export EDITOR=nvim
+
+# Always make last command successful. Note that all errors (but the very last
+# command) is not going to be surfaced anyway.
+# https://github.com/Tarrasch/dotfiles/commit/214274da5b8734d9806c7d968d9a217f621a1888
+true

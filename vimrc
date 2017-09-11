@@ -152,6 +152,8 @@ filetype on
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+" byte offset
+set statusline+=%o
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -220,3 +222,6 @@ vnoremap <C-H> :<C-U>Hexmode<CR>
 
 colorscheme pablo
 hi ColorColumn ctermbg=236 guibg=darkgrey
+
+" show status line
+set laststatus=2
