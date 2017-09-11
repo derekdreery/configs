@@ -49,6 +49,8 @@ set -x
 
 # zsh
 ln -s "$PWD/addpath.zsh" "$HOME/.zsh/zfunc/addpath"
+ln -s "$PWD/zsh_aliases" "$HOME/.zsh/zsh_aliases"
+ln -s "$PWD/zsh_env" "$HOME/.zsh/zsh_env"
 
 # i3
 if [ ! -e "$HOME/.config/i3/config" ]; then

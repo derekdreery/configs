@@ -1,0 +1,14 @@
+alias -g ls="ls --color=auto"
+#alias -g l="ls -lah" 
+alias -g L="|less -R"
+alias -g "cargo_doc_dev"="cargo rustdoc -- --no-defaults --passes \"collapse-docs\" --passes \"unindent-comments\""
+alias -g diff="diff --color=auto"
+alias "cd.."="cd .."
+
+# rust
+alias "cre"="cargo run --example"
+
+# Dirs
+hash -d cs143=/usr/class/cs143
+
+
