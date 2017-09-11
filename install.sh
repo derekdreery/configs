@@ -40,14 +40,19 @@ check_for "lightdm-gtk-greeter"
 
 echo ""
 echo "Creating directories"
-mkdir -p $HOME/packages
+mkdir -p "$HOME/packages"
+mkdir -p "$HOME/.zsh/zfunc"
+mkdir -p "$HOME/.config/i3"
 
 echo "Installing configuration files"
 set -x
+
+# zsh
+ln -s "$PWD/addpath.zsh" "$HOME/.zsh/zfunc/addpath"
+
 # i3
-mkdir -p ~/.i3
-if [ ! -e "$HOME/.i3/config" ]; then
-    ln -s $PWD/i3config $HOME.i3/config
+if [ ! -e "$HOME/.config/i3/config" ]; then
+    ln -s "$PWD/i3config" "$HOME/config/i3/config"
 fi
 # background image (feh)
 mkdir -p $HOME/Pictures
