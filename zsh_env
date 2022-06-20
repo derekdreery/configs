@@ -1,1 +1,2 @@
-export CARGO_TARGET_DIR="/home/rdodd/.cargo/target_dir"
+#export CARGO_TARGET_DIR="/home/rdodd/.cargo/target_dir"
+export XKB_DEFAULT_LAYOUT=gb

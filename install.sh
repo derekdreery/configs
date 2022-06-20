@@ -8,7 +8,7 @@ error() {
     exit 1
 }
 
-error() {
+warn() {
     echo >&2 " -- WARN: $1, continuing"
 }
 
@@ -52,6 +52,11 @@ ln -s "$PWD/addpath.zsh" "$HOME/.zsh/zfunc/addpath"
 ln -s "$PWD/zsh_aliases" "$HOME/.zsh/zsh_aliases"
 ln -s "$PWD/zsh_env" "$HOME/.zsh/zsh_env"
 
+# zsh.antigen-hs
+sudo pacman -S ghc cabal-install
+git clone https://github.com/Tarrasch/antigen-hs.git ~/.zsh/antigen-hs/
+
+
 # i3
 if [ ! -e "$HOME/.config/i3/config" ]; then
     ln -s "$PWD/i3config" "$HOME/config/i3/config"
@@ -87,9 +92,3 @@ fi
 sudo ln -s $PWD/lightdm.conf /etc/lightdm/lightdm.conf
 # git
 sh ./git_setup.sh
-# xcwd
-git clone https://github.com/schischi/xcwd $HOME/packages/xcwd
-pushd $HOME/packages/xcwd
-make
-sudo cp ./xcwd /usr/local/bin/xcwd
-popd

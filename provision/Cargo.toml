@@ -1,0 +1,10 @@
+[package]
+name = "provision"
+version = "0.1.0"
+authors = ["Richard Dodd <richard.dodd@itp-group.co.uk>"]
+
+[dependencies]
+askama = "*"
+
+[build-dependencies]
+askama = "*"

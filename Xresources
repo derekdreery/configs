@@ -17,7 +17,7 @@ URxvt.resize-font.smaller: C-Down
 URxvt.resize-font.bigger: C-Up
 
 ! -- Xft settings -- !
-Xft.dpi:        96
+Xft.dpi:        192
 Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true

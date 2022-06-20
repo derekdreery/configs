@@ -35,6 +35,7 @@ autoload addpath
 addpath ~/.cabal/bin # haskell
 addpath ~/.bin
 addpath ~/.cargo/bin # rust
+addpath ~/.local/bin # local stuff
 addpath ~/.gem/ruby/2.4.0/bin # ruby (e.g. sass)
 
 # Vi mode ftw
@@ -53,7 +54,7 @@ source ~/.zsh/zsh_aliases
 source ~/.zsh/zsh_env
 
 # Initialize antigen-hs
-source ~/.zsh/antigen-hs/init.zsh
+# source ~/.zsh/antigen-hs/init.zsh
 
 # Python autocompletion (http://stackoverflow.com/a/246779/621449)
 export PYTHONSTARTUP=~/.pythonrc
@@ -72,7 +73,7 @@ RPS1='%F{green}%~ %f[%F{yellow}%?%f]'
 PS2='%F{yellow}%_%f > '
 
 # Racer
-export RUST_SRC_PATH=~/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/
+#export RUST_SRC_PATH=~/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/
 
 # Set cursor style
 #print -rn '4 q'
@@ -81,6 +82,31 @@ export RUST_SRC_PATH=~/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib
 export PATH=$PATH:$(composer global config bin-dir --absolute 2>/dev/null)
 
 export EDITOR=nvim
+
+# The following lines were added by compinstall
+
+autoload -Uz compinit
+compinit
+
+zstyle ':completion:*' completer _complete _ignored
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
+zstyle :compinstall filename '/home/rdodd/.zshrc'
+# End of lines added by compinstall
+
+# Support local global install
+addpath ~/.local/node_modules/bin
+export npm_config_prefix=~/.local/node_modules
+
+# Search history using typed contents
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^[[A" history-beginning-search-backward-end
+bindkey "^[[B" history-beginning-search-forward-end
+
+if [[ -a ~/.zshrc.local ]]; then
+    source ~/.zshrc.local
+fi
 
 # Always make last command successful. Note that all errors (but the very last
 # command) is not going to be surfaced anyway.
